@@ -98,7 +98,7 @@ public class ChargeTimeCalc {
 			minutes = (int) total - (hours * 60);			
 			seconds = (int) ((total - (hours * 60) - minutes) * 60);								
 			System.out.println("The Approximate time required to charge the device is: " 
-								+ hours + ":" + minutes + "'" + seconds + "''");
+								+ hours + ":" + minutes + "'" + seconds + "\"");
 						
 			//Checks if you want to continue the program
 			System.out.println("----------------------------------");
