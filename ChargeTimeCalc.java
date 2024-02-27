@@ -1,6 +1,7 @@
 /**
- * Author: Akshay Karunakar Naik 
- * Date: 27-02-2024
+ * Date: 27-02-2024 
+ * 
+ * @author: Akshay Karunakar Naik
  */
 
 package ChargeTimeCalculator;
@@ -47,44 +48,44 @@ public class ChargeTimeCalc {
 								
 			//Checks if the entered values are correct 
 			if (currentChargePer < 1) {
-				System.out.println("+--------------ERROR!--------------+");
-				System.out.println("| The remaining charge percentage  |\n"
-								 + "| cant't be less than 1 (one)!     |");								 
-				System.out.println("+----------------------------------+");
+				System.out.println("+--------------ERROR!--------------+\n"
+								 + "| The remaining charge percentage  |\n"
+								 + "| cant't be less than 1 (one)!     |\n"							 
+								 + "+----------------------------------+");
 				scanReq = "currentChargePer";
 				continue;
 			} else if (charge15Min < 1) {
-				System.out.println("+--------------ERROR!--------------+");
-				System.out.println("| The percentage your device can   |\n"
+				System.out.println("+--------------ERROR!--------------+\n"
+								 + "| The percentage your device can   |\n"
 								 + "| charge upto in 15 min must be    |\n"
-								 + "| greater than 0 (zero)!           |");
-				System.out.println("+----------------------------------+");
+								 + "| greater than 0 (zero)!           |\n"
+								 + "+----------------------------------+");
 				scanReq = "charge15Min";
 				continue;
-			} else if (chargePerReq < currentChargePer) {
-				System.out.println("+---------------ERROR!---------------+");								
+			} else if (chargePerReq < currentChargePer) {										
 				
 				//Fixes the end String depending on the currentChargePer digit count
 				String endStrFix;
 				if (currentChargePer < 10) {					
-					endStrFix = "      |";
+					endStrFix = "      |\n";
 				} else if (currentChargePer < 100) {					
-					endStrFix = "     |";
+					endStrFix = "     |\n";
 				} else {					
-					endStrFix = "    |";
+					endStrFix = "    |\n";
 				}
 				
-				System.out.println("| The charge percentage you require  |\n"
-  				  				   + "| can't be less than the remaining   |\n"
-  				  				   + "| charge percentage which was " + currentChargePer + endStrFix);
-				System.out.println("+------------------------------------+");
+				System.out.println("+---------------ERROR!---------------+\n"
+								 + "| The charge percentage you require  |\n"
+  				  				 + "| can't be less than the remaining   |\n"
+  				  				 + "| charge percentage which was " + currentChargePer + endStrFix
+								 + "+------------------------------------+");
 				scanReq = "chargePerReq";
 				continue;
 			} else if (offset < 0) {
-				System.out.println("+--------------ERROR!--------------+");
-				System.out.println("| The offset value can't be less   |\n"
-								 + "| than 0 (zero)!                   |");
-				System.out.println("+----------------------------------+");
+				System.out.println("+--------------ERROR!--------------+\n"
+								 + "| The offset value can't be less   |\n"
+								 + "| than 0 (zero)!                   |\n"
+								 + "+----------------------------------+");
 				scanReq = "offset";
 				continue;
 			}
@@ -98,20 +99,27 @@ public class ChargeTimeCalc {
 			minutes = (int) total - (hours * 60);			
 			seconds = (int) ((total - (hours * 60) - minutes) * 60);								
 			System.out.println("The Approximate time required to charge the device is: " 
-								+ hours + ":" + minutes + "'" + seconds + "\"");
+							   + hours + ":" + minutes + "'" + seconds + "\"");
 						
 			//Checks if you want to continue the program
-			System.out.println("----------------------------------");
-			System.out.print("Do you wish to continue [y or n]: ");							
-			char repeat = scan.next().charAt(0);			
-			if (repeat == 'y' || repeat == 'Y') {	
-				scanReq = "";					
-				continue;
-			} else if (repeat == 'n' || repeat == 'N') {
-				System.out.println("The program has been terminated!");
-				scan.close();
-				break;
-			} 
+			System.out.println("------------------------------------");
+			while (true) {
+				System.out.print("Do you wish to continue [y or n]: ");							
+				char repeat = scan.next().charAt(0);			
+				if (repeat == 'y' || repeat == 'Y') {	
+					System.out.print("\n");
+					scanReq = "";					
+					break;
+				} else if (repeat == 'n' || repeat == 'N') {
+					System.out.println("The program has been terminated!");
+					scan.close();
+					System.exit(0);
+				} else {
+					System.out.println("\n+-------------WARNING!-------------+\n"
+									 + "| Please enter the given keyword!  |\n"
+									 + "+----------------------------------+\n");
+				}
+			}
 		}
 	}
 }
